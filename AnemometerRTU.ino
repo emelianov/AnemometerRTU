@@ -16,30 +16,30 @@
 #define REG_COUNT 38
 
 struct dataset_t {
-  uint16_t DeviceState;                   // 0
-  uint16_t WindDirection;                 // 1
-  float    WindSpeed;                     // 2,3
-  float    Temperature;                   // 4,5
-  float    Humidity;                      // 6,7
-  float    AirPressure;                   // 8,9
-  uint16_t CompassHeading;                // 10
-  uint16_t PrecipitationType;             // 11
-  float    PrecipitationIntensity;        // 12,13
-  float    AccumulatedPrecepitation;      // 14,15
-  uint16_t IntensityUnit;                 // 16
-  uint16_t GpsStatus;                     // 17
-  float    GpsSpeed;                      // 18,19
-  uint16_t GpsHeading;                    // 20
-  float    Longitude;                     // 21,22
-  float    Latitude;                      // 23,24
-  float    DiustConcentration;            // 25,26
-  float    Visibility;                    // 27,28
-  float    RadiationIllimitation;         // 29,30
-  float    Reserved;                      // 31,32
-  float    RadiationPower;                // 33,34
-  uint16_t CompassCorrectedWindDirection; // 35,36
+  uint16_t DeviceState;                   // 1
+  uint16_t WindDirection;                 // 2
+  float    WindSpeed;                     // 3,4
+  float    Temperature;                   // 5,6
+  float    Humidity;                      // 7,8
+  float    AirPressure;                   // 9,10
+  uint16_t CompassHeading;                // 11
+  uint16_t PrecipitationType;             // 12
+  float    PrecipitationIntensity;        // 13,14
+  float    AccumulatedPrecepitation;      // 15,16
+  uint16_t IntensityUnit;                 // 17
+  uint16_t GpsStatus;                     // 18
+  float    GpsSpeed;                      // 19,20
+  uint16_t GpsHeading;                    // 21
+  float    Longitude;                     // 22,23
+  float    Latitude;                      // 24,25
+  float    DustConcentration;            // 26,27
+  float    Visibility;                    // 28,29
+  float    RadiationIllimitation;         // 30,31
+  float    Reserved;                      // 32,33
+  float    RadiationPower;                // 34,35
+  uint16_t CompassCorrectedWindDirection; // 36
   float    Altitude;                      // 37,38
-};
+} __attribute__((packed));
 
 ModbusRTU mb;
 dataset_t dataset;
@@ -52,7 +52,7 @@ bool cb(Modbus::ResultCode event, uint16_t transactionId, void* data) { // Callb
   }
   // Uncomment lines below if no modbus errors but data values looks incorrect
   //uint16_t* reg_array = (uint16_t*)&dataset;
-  //for (uint16_t i = 0; i < (sizeof(dataset_t) / 2); i++) {
+  //for (uint16_t i = 0; i < REG_COUNT; i++) {
   //  reg_array[i] = __swap_16(reg_array[i]);
   //}
 
